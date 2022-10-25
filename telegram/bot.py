@@ -1,4 +1,6 @@
 import requests
+
+from telegram import chat
 from .user import User
 from .update import Update
 
@@ -29,3 +31,32 @@ class Bot:
         Returns:
           A telegram.Message instance representing the message posted.
         """
+        url = f'{self.base_url}/sendMessage'
+        data = {
+          'chat_id':chat_id,
+          'text':text
+        }
+        r = requests.post(url,data=data)
+
+    def getUpdates(self):
+        """
+        Use this method to receive incoming updates using long polling
+
+        Arguments:
+            None
+        Returns:
+            Returns an Array of Update objects.
+        """
+
+        url = f'{self.base_url}/getUpdates'
+        r = requests.get(url)
+        data = r.json()
+        result = data['result']
+
+        updates = []
+
+        if result:
+            for update in result:
+                updates.append(Update(update))
+
+        return updates
