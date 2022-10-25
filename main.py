@@ -1,6 +1,5 @@
-from turtle import update
 import telegram
-from telegram import chat
+
 TOKEN='5559122728:AAHOu1gL4pA1riJPMCmICNTKI57P5xnHsyA'
 
 bot = telegram.Bot(TOKEN)
