@@ -1,11 +1,11 @@
 import json
 from .message import Message
 class Update:
-    def __init__(self, update) -> None:
+    def __init__(self, update: dict) -> None:
         self.update_id = update['update_id']
         self.message   = Message(update['message'])
 
-    
+
     def fromDict(self)->dict:
         '''
         Convert User object to dictionary

@@ -51,12 +51,6 @@ class Bot:
         url = f'{self.base_url}/getUpdates'
         r = requests.get(url)
         data = r.json()
-        result = data['result']
-
-        updates = []
-
-        if result:
-            for update in result:
-                updates.append(Update(update))
-
-        return updates
+        result = data['result'][-1]
+        return Update(result)
+        
